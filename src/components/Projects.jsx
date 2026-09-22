@@ -1,55 +1,55 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
+import { FaGithub } from 'react-icons/fa';
 
 const projects = [
   {
-    title: 'E-Commerce Store',
-    description: 'A fully responsive online store with cart, product filtering, and checkout.',
-    tech: ['React', 'Tailwind', 'Context API'],
+    title: 'ShopEase - E-Commerce Store',
+    description:
+      'Full-stack e-commerce store with cart, checkout, product filtering, and MongoDB order storage.',
+    tech: ['React', 'Node.js', 'MongoDB', 'Tailwind'],
     image: '🛒',
-    github: '#',
-    demo: '#',
+    github: 'https://github.com/irsaali/shop-ease',
+  },
+  {
+    title: 'ShopEase API - Backend',
+    description:
+      'RESTful API with Express and MongoDB Atlas. Products, orders, and status management with complete CRUD operations.',
+    tech: ['Node.js', 'Express', 'MongoDB', 'REST API'],
+    image: '⚙️',
+    github: 'https://github.com/irsaali/shop-ease-api',
+  },
+  {
+    title: 'Personal Portfolio',
+    description:
+      'Modern animated portfolio with working contact form using EmailJS, smooth scroll, and mobile-first design.',
+    tech: ['React', 'Tailwind', 'Framer Motion'],
+    image: '👩‍💻',
+    github: 'https://github.com/irsaali/portfolio',
   },
   {
     title: 'Weather App',
-    description: 'Real-time weather app with 7-day forecast using OpenWeather API.',
+    description:
+      'Real-time weather application with 7-day forecast, search functionality, and beautiful UI using OpenWeather API.',
     tech: ['React', 'API', 'CSS'],
     image: '🌤️',
     github: '#',
-    demo: '#',
   },
   {
     title: 'Task Manager',
-    description: 'A productivity app to manage daily tasks with drag and drop feature.',
+    description:
+      'Productivity app to manage daily tasks with drag and drop feature, priority levels, and local storage persistence.',
     tech: ['React', 'LocalStorage'],
     image: '✅',
     github: '#',
-    demo: '#',
   },
   {
     title: 'Restaurant Landing',
-    description: 'Modern landing page for a restaurant with menu and table booking.',
+    description:
+      'Modern landing page for a restaurant with menu display, table booking form, and smooth animations.',
     tech: ['React', 'Tailwind'],
     image: '🍽️',
     github: '#',
-    demo: '#',
-  },
-  {
-    title: 'Movie Search',
-    description: 'Search any movie and get details from the OMDB API in real time.',
-    tech: ['React', 'API'],
-    image: '🎬',
-    github: '#',
-    demo: '#',
-  },
-  {
-    title: 'Chat App UI',
-    description: 'A modern real-time chat interface with dark mode and emoji picker.',
-    tech: ['React', 'Firebase'],
-    image: '💬',
-    github: '#',
-    demo: '#',
   },
 ];
 
@@ -83,14 +83,16 @@ export default function Projects() {
               initial={{ opacity: 0, y: 30 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 group"
+              className="bg-card rounded-2xl overflow-hidden border border-white/5 hover:border-primary/50 transition-all duration-300 group flex flex-col"
             >
               <div className="h-40 bg-gradient-to-br from-primary/20 to-purple-500/20 flex items-center justify-center text-7xl group-hover:scale-110 transition-transform duration-500">
                 {project.image}
               </div>
-              <div className="p-6">
+              <div className="p-6 flex flex-col flex-1">
                 <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-                <p className="text-gray-400 text-sm mb-4">{project.description}</p>
+                <p className="text-gray-400 text-sm mb-4 flex-1">
+                  {project.description}
+                </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((t) => (
                     <span
@@ -102,12 +104,21 @@ export default function Projects() {
                   ))}
                 </div>
                 <div className="flex gap-3">
-                  <a href={project.github} className="flex items-center gap-2 text-sm text-gray-300 hover:text-primary transition-colors">
-                    <FaGithub /> Code
-                  </a>
-                  <a href={project.demo} className="flex items-center gap-2 text-sm text-gray-300 hover:text-primary transition-colors">
-                    <FaExternalLinkAlt /> Live Demo
-                  </a>
+                  {project.github && project.github !== '#' && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 text-sm text-gray-300 hover:text-primary transition-colors font-medium"
+                    >
+                      <FaGithub /> View Code
+                    </a>
+                  )}
+                  {project.github === '#' && (
+                    <span className="text-sm text-gray-500 italic">
+                      Coming soon...
+                    </span>
+                  )}
                 </div>
               </div>
             </motion.div>
